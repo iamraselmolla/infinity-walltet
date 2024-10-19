@@ -1,6 +1,6 @@
 import React from 'react';
 
-const NewRequest = () => {
+const OrderHistory = () => {
     return (
         <div>
 
@@ -8,4 +8,4 @@ const NewRequest = () => {
     );
 };
 
-export default NewRequest;
+export default OrderHistory;
