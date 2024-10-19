@@ -18,7 +18,7 @@ const DashboardHeader = () => {
                     <AiOutlineSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
                 </div>
                 <div className="flex items-center">
-                    <img src="/api/placeholder/40/40" alt="User" className="w-10 h-10 rounded-full mr-2" />
+                    <img src="/images/user.png" alt="User" className="w-10 h-10 rounded-full mr-2" />
                     <div>
                         <p className="font-semibold">Mohammad Amir Khan</p>
                         <p className="text-sm text-blue-500">@amirkhan023</p>
