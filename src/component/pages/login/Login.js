@@ -1,86 +1,104 @@
 import React, { useState } from 'react';
-import { FaEye, FaEyeSlash, FaGoogle, FaInfinity } from 'react-icons/fa';
+import { CiUser, CiLock } from 'react-icons/ci';
+import { FaEye, FaEyeSlash } from 'react-icons/fa';
+import { FcGoogle } from 'react-icons/fc';
+import { FaCircleCheck } from "react-icons/fa6";
+
 
 const LoginPage = () => {
     const [showPassword, setShowPassword] = useState(false);
 
     return (
-        <div className="flex flex-col lg:flex-row h-screen bg-white">
+        <div className="flex flex-col md:flex-row h-screen bg-white">
             {/* Left side - Login Form */}
-            <div className="w-full lg:w-1/2 flex flex-col justify-center items-center p-6 lg:p-12">
+            <div className="w-full md:w-1/2 flex flex-col justify-center items-center p-12">
                 <div className="w-full max-w-md">
-                    <div className="flex items-center mb-6 lg:mb-8">
-                        <FaInfinity className="text-blue-600 text-3xl mr-2" />
-                        <span className="text-2xl font-bold text-blue-600">Infinity</span>
+                    {/* Infinity Logo */}
+                    <div className="flex items-center justify-start mb-12">
+                        <img src="images/logo.png" alt="Infinity" className="h-8" />
                     </div>
 
-                    <h1 className="text-3xl lg:text-4xl font-bold mb-2">Welcome back</h1>
-                    <p className="text-gray-600 mb-6 lg:mb-8">We're delighted to have you</p>
+                    {/* Welcome Text */}
+                    <div className="lg:pl-24">
+                        <h1 className="text-4xl font-bold mb-2 text-left">Welcome back</h1>
+                        <p className="text-gray-600 mb-8 text-left">We're delighted to have you</p>
 
-                    <form className="space-y-4">
-                        <div>
-                            <input
-                                type="text"
-                                placeholder="Enter your Email or Username"
-                                className="w-full p-3 border border-gray-300 rounded-full focus:outline-none focus:border-blue-500"
-                            />
-                        </div>
-                        <div className="relative">
-                            <input
-                                type={showPassword ? "text" : "password"}
-                                placeholder="Enter your Password"
-                                className="w-full p-3 border border-gray-300 rounded-full focus:outline-none focus:border-blue-500"
-                            />
-                            <button
-                                type="button"
-                                onClick={() => setShowPassword(!showPassword)}
-                                className="absolute right-3 top-1/2 transform -translate-y-1/2"
-                            >
-                                {showPassword ? (
-                                    <FaEyeSlash className="h-5 w-5 text-gray-500" />
-                                ) : (
-                                    <FaEye className="h-5 w-5 text-gray-500" />
-                                )}
+                        <form className="space-y-4">
+                            {/* Email or Username Input */}
+                            <div className="relative">
+                                <span className="absolute inset-y-0 left-3 flex items-center pointer-events-none">
+                                    <CiUser className="text-gray-500" />
+                                </span>
+                                <input
+                                    type="text"
+                                    placeholder="Enter your Email or Username"
+                                    className="w-full pl-10 p-3 border border-gray-300 rounded-full bg-transparent"
+                                />
+                            </div>
+
+                            {/* Password Input */}
+                            <div className="relative">
+                                <span className="absolute inset-y-0 left-3 flex items-center pointer-events-none">
+                                    <CiLock className="text-gray-500" />
+                                </span>
+                                <input
+                                    type={showPassword ? "text" : "password"}
+                                    placeholder="Enter your Password"
+                                    className="w-full pl-10 p-3 border border-gray-300 rounded-full bg-transparent"
+                                />
+                                <button
+                                    type="button"
+                                    onClick={() => setShowPassword(!showPassword)}
+                                    className="absolute right-3 top-1/2 transform -translate-y-1/2"
+                                >
+                                    {showPassword ? (
+                                        <FaEyeSlash className="h-5 w-5 text-gray-500" />
+                                    ) : (
+                                        <FaEye className="h-5 w-5 text-gray-500" />
+                                    )}
+                                </button>
+                            </div>
+
+                            <div className="flex text-theme-color justify-between items-center">
+                                <label className="flex gap-2  items-center">
+                                    <FaCircleCheck />
+                                    <span className="text-sm ">Remember Me</span>
+                                </label>
+                                <a href="#" className="text-sm ">Forgot Password?</a>
+                            </div>
+
+                            <button className="w-full bg-blue-900 text-white p-3 rounded-full">
+                                Sign in
                             </button>
+                        </form>
+
+                        <div className="mt-6 text-center">
+                            <span className="text-gray-600">Or</span>
                         </div>
-                        <div className="flex justify-between items-center">
-                            <label className="flex items-center">
-                                <input type="checkbox" className="mr-2" />
-                                <span className="text-sm text-gray-600">Remember Me</span>
-                            </label>
-                            <a href="#" className="text-sm text-green-500 hover:underline">Forgot Password?</a>
-                        </div>
-                        <button className="w-full bg-blue-900 text-white p-3 rounded-full hover:bg-blue-800 transition duration-300">
-                            Sign in
+
+                        <button className="w-full mt-4 p-3 border border-gray-300 rounded-full flex items-center justify-center">
+                            <FcGoogle className="mr-2" />
+                            Sign in with Google
                         </button>
-                    </form>
 
-                    <div className="mt-6 text-center">
-                        <span className="text-gray-600">Or</span>
+                        <p className="mt-6 text-center text-sm text-gray-600">
+                            You don't have any account yet?
+                            <a href="#" className="text-theme-color ml-1">Contact Us</a>
+                        </p>
+
+                        <p className="mt-4 px-16 text-center text-xs text-gray-500">
+                            By signing in, you agree to our
+                            <a href="#" className="text-theme-color ml-1">Terms & Conditions</a> and
+                            <a href="#" className="text-theme-color ml-1">Privacy Policy</a>
+                        </p>
                     </div>
-
-                    <button className="w-full mt-4 p-3 border border-gray-300 rounded-full flex items-center justify-center hover:bg-gray-100 transition duration-300">
-                        <FaGoogle className="mr-2 text-red-500" />
-                        Sign in with Google
-                    </button>
-
-                    <p className="mt-6 text-center text-sm text-gray-600">
-                        You don't have any account yet?
-                        <a href="#" className="text-green-500 ml-1 hover:underline">Contact Us</a>
-                    </p>
-
-                    <p className="mt-4 text-center text-xs text-gray-500">
-                        By signing in, you agree to our
-                        <a href="#" className="text-green-500 ml-1 hover:underline">Terms & Conditions</a> and
-                        <a href="#" className="text-green-500 ml-1 hover:underline">Privacy Policy</a>.
-                    </p>
                 </div>
             </div>
 
             {/* Right side - Image and Text */}
-            <div className="w-full lg:w-1/2 bg-blue-50 flex flex-col justify-between lg:px-12 py-8 lg:py-12">
-                <div className="text-center lg:text-right lg:w-2/4 mx-auto lg:mx-0">
-                    <h2 className="text-2xl font-light text-blue-900 mb-4 lg:mb-2">
+            <div className="w-full relative md:w-1/2 bg-blue-50 flex flex-col justify-between md:px-12 py-12">
+                <div className="text-right flex justify-center w-full">
+                    <h2 className="text-2xl w-3/5 font-light text-blue-900 mb-2">
                         Empowering connections through secure transactions.
                     </h2>
                 </div>
@@ -88,22 +106,20 @@ const LoginPage = () => {
                 <div className="flex justify-center items-center flex-grow">
                     <img src="images/login.png" alt="Secure transactions illustration" className="max-w-full h-auto" />
                 </div>
-
-                <div className="text-center">
-                    <p className="text-xl text-blue-900">Make a safe transaction with trust.</p>
+                <div className="absolute bottom-4 left-0 right-0 flex justify-center text-sm text-gray-500">
+                    <div className="flex space-x-4 items-center">
+                        <div className="space-x-4">
+                            <a href="#" className="hover:text-blue-600">About Us</a>
+                            <a href="#" className="hover:text-blue-600">Contact</a>
+                            <a href="#" className="hover:text-blue-600">Privacy Policy</a>
+                            <a href="#" className="hover:text-blue-600">Terms & Condition</a>
+                        </div>
+                    </div>
                 </div>
             </div>
 
             {/* Footer */}
-            <div className="absolute bottom-4 left-4 right-4 flex justify-between text-sm text-gray-500">
-                <div>Copyright 2024 © All Rights Reserved</div>
-                <div className="space-x-4">
-                    <a href="#" className="hover:text-blue-600">About Us</a>
-                    <a href="#" className="hover:text-blue-600">Contact</a>
-                    <a href="#" className="hover:text-blue-600">Privacy Policy</a>
-                    <a href="#" className="hover:text-blue-600">Terms & Condition</a>
-                </div>
-            </div>
+
         </div>
     );
 };
