@@ -36,12 +36,12 @@ const PaymentRequestForm = () => {
             <div className="max-w-6xl w-full grid grid-cols-1 md:grid-cols-3 gap-8 p-4">
                 {/* Form */}
                 <div className="md:col-span-2 bg-[#F8F9FA] rounded-3xl shadow-lg p-6">
-                    <h2 className="text-lg font-semibold mb-4">Enter Payment Information</h2>
+                    <h2 className="text-lg text-theme-color font-semibold mb-4">Enter Payment Information</h2>
                     <form onSubmit={formik.handleSubmit} className="space-y-4">
                         {/* Payment Method and Payment Type */}
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                             <div>
-                                <label htmlFor="paymentMethod" className="block text-sm font-medium text-gray-700">Payment Method</label>
+                                <label htmlFor="paymentMethod" className="block text-sm font-medium text-gray-700">Choose payment method</label>
                                 <div className="relative">
                                     <select
                                         id="paymentMethod"
@@ -61,7 +61,7 @@ const PaymentRequestForm = () => {
                                 </div>
                             </div>
                             <div>
-                                <label htmlFor="paymentType" className="block text-sm font-medium text-gray-700">Payment Type</label>
+                                <label htmlFor="paymentType" className="block text-sm font-medium text-gray-700">Choose Type</label>
                                 <div className="relative">
                                     <select
                                         id="paymentType"
@@ -95,9 +95,9 @@ const PaymentRequestForm = () => {
                                         onChange={formik.handleChange}
                                         onBlur={formik.handleBlur}
                                         value={formik.values.recipientNumber}
-                                        className={`block w-full rounded-full border ${formik.touched.recipientNumber && formik.errors.recipientNumber ? 'border-red-500' : 'border-gray-300'} bg-white shadow-sm focus:border-teal-300 focus:ring focus:ring-teal-200 focus:ring-opacity-50 p-2 pr-10`}
+                                        className={`block w-full rounded-full border px-6 ${formik.touched.recipientNumber && formik.errors.recipientNumber ? 'border-red-500' : 'border-gray-300'} bg-white shadow-sm focus:border-teal-300 focus:ring focus:ring-teal-200 focus:ring-opacity-50 p-2 pr-10`}
                                     />
-                                    <FiPhone className="absolute inset-y-0 right-3 flex items-center text-gray-400 pointer-events-none" />
+                                    <FiPhone className="absolute right-5 my-auto inset-y-0 text-gray-400 pointer-events-none" />
                                     {formik.touched.recipientNumber && formik.errors.recipientNumber ? (
                                         <p className="text-red-500 text-sm mt-1">{formik.errors.recipientNumber}</p>
                                     ) : null}
@@ -116,7 +116,7 @@ const PaymentRequestForm = () => {
                                         value={formik.values.amount}
                                         className={`block w-full rounded-full border ${formik.touched.amount && formik.errors.amount ? 'border-red-500' : 'border-gray-300'} bg-white shadow-sm focus:border-teal-300 focus:ring focus:ring-teal-200 focus:ring-opacity-50 p-2 pr-10`}
                                     />
-                                    <FiDollarSign className="absolute inset-y-0 right-3 flex items-center text-gray-400 pointer-events-none" />
+                                    <FiDollarSign className="absolute right-3 my-auto inset-y-0 text-gray-400 pointer-events-none" />
                                     {formik.touched.amount && formik.errors.amount ? (
                                         <p className="text-red-500 text-sm mt-1">{formik.errors.amount}</p>
                                     ) : null}
@@ -127,7 +127,7 @@ const PaymentRequestForm = () => {
                         {/* Customer Name and Message */}
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                             <div>
-                                <label htmlFor="customerName" className="block text-sm font-medium text-gray-700">Customer Name</label>
+                                <label htmlFor="customerName" className="block text-sm font-medium text-gray-700">Name & Message (Optional)</label>
                                 <div className="relative">
                                     <input
                                         type="text"
@@ -139,7 +139,7 @@ const PaymentRequestForm = () => {
                                         value={formik.values.customerName}
                                         className="block w-full rounded-full border border-gray-300 bg-white shadow-sm focus:border-teal-300 focus:ring focus:ring-teal-200 focus:ring-opacity-50 p-2 pr-10"
                                     />
-                                    <FiUser className="absolute inset-y-0 right-3 flex items-center text-gray-400 pointer-events-none" />
+                                    <FiUser className="absolute right-3 my-auto inset-y-0 text-gray-400 pointer-events-none" />
                                 </div>
                             </div>
                             <div>
@@ -152,7 +152,7 @@ const PaymentRequestForm = () => {
                                     onChange={formik.handleChange}
                                     onBlur={formik.handleBlur}
                                     value={formik.values.message}
-                                    className="block w-full rounded-full border border-gray-300 bg-white shadow-sm focus:border-teal-300 focus:ring focus:ring-teal-200 focus:ring-opacity-50 p-2 pr-10"
+                                    className="block w-full rounded-2xl border border-gray-300 bg-white shadow-sm focus:border-teal-300 focus:ring focus:ring-teal-200 focus:ring-opacity-50 p-2 pr-10"
                                 />
                             </div>
                         </div>
@@ -172,21 +172,30 @@ const PaymentRequestForm = () => {
                 {/* Quick Links */}
                 <div className="w-full">
                     <div className="bg-white rounded-lg shadow-lg p-6">
-                        <h2 className="text-lg font-semibold mb-4">Quick Links</h2>
+                        <h2 className="text-lg font-semibold text-theme-color mb-4">Quick Links</h2>
                         <ul className="space-y-2">
                             <li>
-                                <a href="#" className="flex items-center text-teal-600 hover:text-teal-800">
+                                <a href="#" className="flex items-center text-[#003366] hover:text-teal-800">
+                                    <img src="/images/icon.png" alt="icon" className="mr-2 w-4 h-4" />
                                     Pending Orders
                                 </a>
                             </li>
                             <li>
-                                <a href="#" className="flex items-center text-teal-600 hover:text-teal-800">
+                                <a href="#" className="flex items-center text-[#003366] hover:text-teal-800">
+                                    <img src="/images/icon.png" alt="icon" className="mr-2 w-4 h-4" />
                                     Order History
                                 </a>
                             </li>
                             <li>
-                                <a href="#" className="flex items-center text-teal-600 hover:text-teal-800">
-                                    Support
+                                <a href="#" className="flex items-center text-[#003366] hover:text-teal-800">
+                                    <img src="/images/icon.png" alt="icon" className="mr-2 w-4 h-4" />
+                                    Saved Payments
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" className="flex items-center text-[#003366] hover:text-teal-800">
+                                    <img src="/images/icon.png" alt="icon" className="mr-2 w-4 h-4" />
+                                    Manage Cards
                                 </a>
                             </li>
                         </ul>
