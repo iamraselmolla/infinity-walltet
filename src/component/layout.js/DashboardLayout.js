@@ -1,33 +1,37 @@
 import React from 'react';
 import { AiOutlineDashboard, AiOutlinePlusCircle, AiOutlineClockCircle, AiOutlineLogout } from 'react-icons/ai';
-import { Outlet, Link } from 'react-router-dom';
+import { Outlet, Link, useLocation } from 'react-router-dom';
 import DashboardHeader from '../pages/dashboard/dashboard-header/DashboardHeader';
 
 const DashboardLayout = () => {
+    const location = useLocation();
+
+    const isActive = (path) => location.pathname === path;
+
     return (
         <div className="flex h-screen bg-gray-100">
             {/* Sidebar */}
-            <div className="w-64 bg-gradient-to-b from-blue-800 to-blue-900 text-white p-6 flex flex-col justify-between">
+            <div className="w-64 bg-gradient-to-b from-[#00456D] via-[#004E70] to-[#004E70] text-white p-6 flex flex-col justify-between rounded-tr-[20px] rounded-br-[20px]">
                 <div>
                     <div className="flex items-center mb-8">
-                        <div className="w-8 h-8 bg-white rounded-full mr-2"></div>
-                        <span className="text-xl font-bold">Infinity</span>
+
+                        <span className="text-xl font-bold"><img src="/images/logo-white.png" alt="Infinity" /></span>
                     </div>
                     <nav>
                         <ul className="space-y-4">
-                            <li className="flex items-center bg-blue-700 rounded p-2">
+                            <li className={`flex items-center pl-6  py-4 rounded ${isActive('/dashboard') ? 'bg-[#003366]' : ''}`}>
                                 <AiOutlineDashboard className="mr-2" />
                                 <Link to="/dashboard">Dashboard</Link>
                             </li>
-                            <li className="flex items-center p-2">
+                            <li className={`flex items-center pl-6  py-4 rounded ${isActive('/dashboard/new-request') ? 'bg-[#003366]' : ''}`}>
                                 <AiOutlinePlusCircle className="mr-2" />
                                 <Link to="/dashboard/new-request">New Request</Link>
                             </li>
-                            <li className="flex items-center p-2">
+                            <li className={`flex items-center pl-6  py-4 rounded ${isActive('/dashboard/pending-orders') ? 'bg-[#003366]' : ''}`}>
                                 <AiOutlineClockCircle className="mr-2" />
                                 <Link to="/dashboard/pending-orders">Pending Orders</Link>
                             </li>
-                            <li className="flex items-center p-2">
+                            <li className={`flex items-center pl-6  py-4 rounded ${isActive('/dashboard/order-history') ? 'bg-[#003366]' : ''}`}>
                                 <AiOutlineClockCircle className="mr-2" />
                                 <Link to="/dashboard/order-history">Order History</Link>
                             </li>
