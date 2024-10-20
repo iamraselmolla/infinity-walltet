@@ -39,8 +39,8 @@ const DashboardLayout = () => {
                         </ul>
                     </nav>
                 </div>
-                <button className="flex items-center bg-white text-blue-900 rounded p-2 w-full justify-center">
-                    <AiOutlineLogout className="mr-2" />
+                <button className="flex items-center bg-white mr-8 text-blue-900 rounded p-2 justify-center">
+                    <AiOutlineLogout className="mr-3" />
                     <span>Logout</span>
                 </button>
             </div>
