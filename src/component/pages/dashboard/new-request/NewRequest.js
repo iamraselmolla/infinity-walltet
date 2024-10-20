@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { FiDollarSign, FiUser, FiPhone } from 'react-icons/fi';
-import PaymentConfirmationModal from '../../../shared/PaymentConfirmationModal';
+import PaymentModal from '../../../shared/PaymentConfirmationModal';
 
 const PaymentRequestForm = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -187,7 +187,7 @@ const PaymentRequestForm = () => {
 
             {/* Modal */}
             {isModalOpen && (
-                <PaymentConfirmationModal />
+                <PaymentModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
             )}
 
         </div>

@@ -1,93 +1,92 @@
-import React from 'react';
-import { FaTimes, FaUser, FaEye, FaEyeSlash } from 'react-icons/fa';
+import React from "react";
+import { AiOutlineCloseCircle } from "react-icons/ai";
+import { FaRegUserCircle } from "react-icons/fa";
+import { BsFillEyeFill } from "react-icons/bs";
 
-const PaymentConfirmationModal = () => {
-    const [showPassword, setShowPassword] = React.useState(false);
+const PaymentModal = ({ isOpen, onClose }) => {
+    if (!isOpen) return null;
 
     return (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4">
-            <div className="bg-white rounded-lg shadow-xl w-full max-w-md">
+        <div className="fixed inset-0 bg-gray-900 bg-opacity-50 flex justify-center items-center z-50">
+            <div className="bg-white rounded-lg shadow-lg w-11/12 md:w-2/3 lg:w-1/2">
+                {/* Modal Header */}
+                <div className="flex justify-between items-center p-4 border-b">
+                    <h2 className="text-lg font-semibold text-gray-800">Confirm Payment Request</h2>
+                    <AiOutlineCloseCircle
+                        className="text-gray-500 text-2xl cursor-pointer"
+                        onClick={onClose}
+                    />
+                </div>
+
+                {/* Modal Body */}
                 <div className="p-6">
-                    <div className="flex justify-between items-center mb-4">
-                        <h2 className="text-2xl font-bold text-navy-900">Confirm Payment Request</h2>
-                        <button className="text-gray-500 hover:text-gray-700">
-                            <FaTimes className="w-5 h-5" />
-                        </button>
-                    </div>
-                    <p className="text-sm text-gray-600 mb-6">
+                    <p className="text-sm text-gray-600 mb-4">
                         To ensure a smooth and successful submission of your mobile banking request.
                     </p>
 
-                    <div className="grid grid-cols-2 gap-4 mb-6">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        {/* Left Side Details */}
                         <div>
-                            <p className="text-sm font-medium text-teal-500">Payment method</p>
-                            <p className="text-sm text-gray-900">bKash</p>
-                        </div>
-                        <div>
-                            <p className="text-sm font-medium text-teal-500">Service Type</p>
-                            <p className="text-sm text-gray-900">Personal</p>
-                        </div>
-                        <div>
-                            <p className="text-sm font-medium text-teal-500">Recipient Number</p>
-                            <p className="text-sm text-gray-900">01637460805</p>
-                        </div>
-                        <div>
-                            <p className="text-sm font-medium text-teal-500">Amount</p>
-                            <p className="text-sm text-gray-900">৳ 10000</p>
-                        </div>
-                        <div>
-                            <p className="text-sm font-medium text-teal-500">Charge</p>
-                            <p className="text-sm text-gray-900">৳ 100</p>
-                        </div>
-                        <div>
-                            <p className="text-sm font-medium text-teal-500">Total Amount</p>
-                            <p className="text-sm font-semibold text-red-600">৳ 10100</p>
-                        </div>
-                        <div>
-                            <p className="text-sm font-medium text-teal-500">Note</p>
-                            <p className="text-sm text-gray-900">Yes</p>
-                        </div>
-                    </div>
-
-                    <div className="mb-6">
-                        <div className="flex justify-center mb-2">
-                            <div className="bg-teal-100 p-3 rounded-full">
-                                <FaUser className="w-6 h-6 text-teal-600" />
+                            <div className="flex justify-between mb-3">
+                                <span className="text-teal-500 font-semibold">Payment Method</span>
+                                <span>bKash</span>
+                            </div>
+                            <div className="flex justify-between mb-3">
+                                <span className="text-teal-500 font-semibold">Service Type</span>
+                                <span>Personal</span>
+                            </div>
+                            <div className="flex justify-between mb-3">
+                                <span className="text-teal-500 font-semibold">Recipient Number</span>
+                                <span>01637460805</span>
+                            </div>
+                            <div className="flex justify-between mb-3">
+                                <span className="text-teal-500 font-semibold">Amount</span>
+                                <span>৳ 10000</span>
+                            </div>
+                            <div className="flex justify-between mb-3">
+                                <span className="text-teal-500 font-semibold">Charge</span>
+                                <span>৳ 100</span>
+                            </div>
+                            <div className="flex justify-between mb-3">
+                                <span className="text-teal-500 font-semibold">Total Amount</span>
+                                <span className="text-red-500 font-semibold">৳ 10100</span>
+                            </div>
+                            <div className="flex justify-between mb-3">
+                                <span className="text-teal-500 font-semibold">Note</span>
+                                <span>Yes</span>
                             </div>
                         </div>
-                        <p className="text-center text-sm font-medium text-gray-700">Verify that it's you</p>
-                        <div className="mt-2 relative">
-                            <input
-                                type={showPassword ? "text" : "password"}
-                                placeholder="Enter your Password"
-                                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-teal-500"
-                            />
-                            <button
-                                className="absolute right-3 top-1/2 transform -translate-y-1/2"
-                                onClick={() => setShowPassword(!showPassword)}
-                            >
-                                {showPassword ? (
-                                    <FaEyeSlash className="w-5 h-5 text-gray-400" />
-                                ) : (
-                                    <FaEye className="w-5 h-5 text-gray-400" />
-                                )}
-                            </button>
+
+                        {/* Right Side - Verification */}
+                        <div className="flex flex-col items-center justify-center">
+                            <FaRegUserCircle className="text-6xl text-teal-500 mb-4" />
+                            <p className="text-teal-500 font-semibold mb-2">Verify that it's you</p>
+                            <div className="relative w-full">
+                                <input
+                                    type="password"
+                                    className="w-full border border-gray-300 rounded-lg px-4 py-2 pr-10"
+                                    placeholder="Enter your Password"
+                                />
+                                <BsFillEyeFill className="absolute top-2.5 right-4 text-gray-500" />
+                            </div>
                         </div>
                     </div>
+                </div>
 
-                    <button className="w-full bg-navy-900 text-white py-3 rounded-md hover:bg-navy-800 transition duration-300">
+                {/* Modal Footer */}
+                <div className="flex justify-center p-4 border-t">
+                    <button className="bg-blue-700 text-white rounded-lg px-6 py-2">
                         Send Payment Request
                     </button>
                 </div>
 
-                <div className="bg-gray-50 px-6 py-3 rounded-b-lg">
-                    <p className="text-xs text-gray-500 text-center">
-                        Ensure all fields are correctly filled and double-check your entries before submitting the form to avoid any delays or issues with your transaction.
-                    </p>
-                </div>
+                {/* Modal Bottom Text */}
+                <p className="text-center text-xs text-gray-500 px-4 py-2">
+                    Ensure all fields are correctly filled and double-check your entries before submitting the form to avoid any delays or issues with your transaction.
+                </p>
             </div>
         </div>
     );
 };
 
-export default PaymentConfirmationModal;
+export default PaymentModal;
