@@ -48,7 +48,7 @@ const DashboardLayout = () => {
             {/* Main content */}
             <div className="flex-1 flex flex-col">
                 <DashboardHeader />
-                <main className="flex-1 p-6">
+                <main className="flex-1 p-6 bg-[#EAF2FA]">
                     {/* Content for each route will be rendered here */}
                     <Outlet />
                 </main>

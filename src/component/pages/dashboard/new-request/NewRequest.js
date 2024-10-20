@@ -1,11 +1,188 @@
 import React from 'react';
+import { useFormik } from 'formik';
+import * as Yup from 'yup';
+import { FiDollarSign, FiUser, FiPhone } from 'react-icons/fi';
 
-const NewRequest = () => {
+const PaymentRequestForm = () => {
+    const formik = useFormik({
+        initialValues: {
+            paymentMethod: '',
+            paymentType: '',
+            recipientNumber: '',
+            amount: '',
+            customerName: '',
+            message: '',
+        },
+        validationSchema: Yup.object({
+            paymentMethod: Yup.string().required('Required'),
+            paymentType: Yup.string().required('Required'),
+            recipientNumber: Yup.string().required('Required').matches(/^[0-9]{11}$/, 'Must be 11 digits'),
+            amount: Yup.number().required('Required').positive('Must be positive'),
+            customerName: Yup.string(),
+            message: Yup.string(),
+        }),
+        onSubmit: (values) => {
+            console.log(values);
+        },
+    });
+
     return (
-        <div>
+        <div className="flex justify-center items-center">
+            <div className="max-w-6xl w-full grid grid-cols-1 md:grid-cols-3 gap-8 p-4">
+                {/* Form */}
+                <div className="md:col-span-2 bg-[#F8F9FA] rounded-lg shadow-lg p-6">
+                    <h2 className="text-lg font-semibold mb-4">Enter Payment Information</h2>
+                    <form onSubmit={formik.handleSubmit} className="space-y-4">
+                        {/* Payment Method and Payment Type */}
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div>
+                                <label htmlFor="paymentMethod" className="block text-sm font-medium text-gray-700">Payment Method</label>
+                                <div className="relative">
+                                    <select
+                                        id="paymentMethod"
+                                        name="paymentMethod"
+                                        onChange={formik.handleChange}
+                                        onBlur={formik.handleBlur}
+                                        value={formik.values.paymentMethod}
+                                        className="block w-full rounded-full border border-gray-300 bg-white shadow-sm focus:border-teal-300 focus:ring focus:ring-teal-200 focus:ring-opacity-50 p-2 pr-10"
+                                    >
+                                        <option value="">Select</option>
+                                        <option value="creditCard">Credit Card</option>
+                                        <option value="bankTransfer">Bank Transfer</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div>
+                                <label htmlFor="paymentType" className="block text-sm font-medium text-gray-700">Payment Type</label>
+                                <div className="relative">
+                                    <select
+                                        id="paymentType"
+                                        name="paymentType"
+                                        onChange={formik.handleChange}
+                                        onBlur={formik.handleBlur}
+                                        value={formik.values.paymentType}
+                                        className="block w-full rounded-full border border-gray-300 bg-white shadow-sm focus:border-teal-300 focus:ring focus:ring-teal-200 focus:ring-opacity-50 p-2 pr-10"
+                                    >
+                                        <option value="">Select</option>
+                                        <option value="oneTime">One-time</option>
+                                        <option value="recurring">Recurring</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
 
+                        {/* Recipient Number and Amount */}
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div>
+                                <label htmlFor="recipientNumber" className="block text-sm font-medium text-gray-700">Recipient Number</label>
+                                <div className="relative">
+                                    <input
+                                        type="text"
+                                        id="recipientNumber"
+                                        name="recipientNumber"
+                                        placeholder="017XX XXX XXX"
+                                        onChange={formik.handleChange}
+                                        onBlur={formik.handleBlur}
+                                        value={formik.values.recipientNumber}
+                                        className="block w-full rounded-full border border-gray-300 bg-white shadow-sm focus:border-teal-300 focus:ring focus:ring-teal-200 focus:ring-opacity-50 p-2 pr-10"
+                                    />
+                                    <FiPhone className="absolute inset-y-0 right-3 flex items-center text-gray-400 pointer-events-none" />
+                                </div>
+                            </div>
+                            <div>
+                                <label htmlFor="amount" className="block text-sm font-medium text-gray-700">Amount</label>
+                                <div className="relative">
+                                    <input
+                                        type="number"
+                                        id="amount"
+                                        name="amount"
+                                        placeholder="Enter the amount"
+                                        onChange={formik.handleChange}
+                                        onBlur={formik.handleBlur}
+                                        value={formik.values.amount}
+                                        className="block w-full rounded-full border border-gray-300 bg-white shadow-sm focus:border-teal-300 focus:ring focus:ring-teal-200 focus:ring-opacity-50 p-2 pr-10"
+                                    />
+                                    <FiDollarSign className="absolute inset-y-0 right-3 flex items-center text-gray-400 pointer-events-none" />
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Customer Name and Message in the Same Row */}
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div>
+                                <label htmlFor="customerName" className="block text-sm font-medium text-gray-700">Customer Name</label>
+                                <div className="relative">
+                                    <input
+                                        type="text"
+                                        id="customerName"
+                                        name="customerName"
+                                        placeholder="Enter Customer Name"
+                                        onChange={formik.handleChange}
+                                        onBlur={formik.handleBlur}
+                                        value={formik.values.customerName}
+                                        className="block w-full rounded-full border border-gray-300 bg-white shadow-sm focus:border-teal-300 focus:ring focus:ring-teal-200 focus:ring-opacity-50 p-2 pr-10"
+                                    />
+                                    <FiUser className="absolute inset-y-0 right-3 flex items-center text-gray-400 pointer-events-none" />
+                                </div>
+                            </div>
+                            <div>
+                                <label htmlFor="message" className="block text-sm font-medium text-gray-700">Message</label>
+                                <textarea
+                                    id="message"
+                                    name="message"
+                                    rows="3"
+                                    placeholder="Additional Notes..."
+                                    onChange={formik.handleChange}
+                                    onBlur={formik.handleBlur}
+                                    value={formik.values.message}
+                                    className="block w-full rounded-full border border-gray-300 bg-white shadow-sm focus:border-teal-300 focus:ring focus:ring-teal-200 focus:ring-opacity-50 p-2 pr-10"
+                                />
+                            </div>
+                        </div>
+
+                        {/* Submit Button */}
+                        <div>
+                            <button
+                                type="submit"
+                                className="w-full flex justify-center py-2 px-4 border border-transparent rounded-full shadow-sm text-sm font-medium text-white bg-teal-600 hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500"
+                            >
+                                Confirm
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+                {/* Quick Links */}
+                <div className="w-full">
+                    <div className="bg-white rounded-lg shadow-lg p-6">
+                        <h2 className="text-lg font-semibold mb-4">Quick Links</h2>
+                        <ul className="space-y-2">
+                            <li>
+                                <a href="#" className="flex items-center text-teal-600 hover:text-teal-800">
+                                    Pending Orders
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" className="flex items-center text-teal-600 hover:text-teal-800">
+                                    Order History
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" className="flex items-center text-teal-600 hover:text-teal-800">
+                                    Sales Report
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" className="flex items-center text-teal-600 hover:text-teal-800">
+                                    Transactions
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
         </div>
     );
 };
 
-export default NewRequest;
+export default PaymentRequestForm;
