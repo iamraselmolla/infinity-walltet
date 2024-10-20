@@ -102,10 +102,11 @@ const PaymentRequestForm = () => {
                                         className={`block w-full rounded-full border px-6 ${formik.touched.recipientNumber && formik.errors.recipientNumber ? 'border-red-500' : 'border-gray-300'} bg-white shadow-sm focus:border-teal-300 focus:ring focus:ring-teal-200 focus:ring-opacity-50 p-2 pr-10`}
                                     />
                                     <FiPhone className="absolute right-5 my-auto inset-y-0 text-gray-400 pointer-events-none" />
-                                    {formik.touched.recipientNumber && formik.errors.recipientNumber ? (
-                                        <p className="text-red-500 text-sm mt-1">{formik.errors.recipientNumber}</p>
-                                    ) : null}
+
                                 </div>
+                                {formik.touched.recipientNumber && formik.errors.recipientNumber ? (
+                                    <p className="text-red-500 text-sm mt-1">{formik.errors.recipientNumber}</p>
+                                ) : null}
                             </div>
                             <div>
                                 <label htmlFor="amount" className="block text-sm font-medium text-gray-700 mb-2">Amount</label>
@@ -118,13 +119,14 @@ const PaymentRequestForm = () => {
                                         onChange={formik.handleChange}
                                         onBlur={formik.handleBlur}
                                         value={formik.values.amount}
-                                        className={`block w-full rounded-full border ${formik.touched.amount && formik.errors.amount ? 'border-red-500' : 'border-gray-300'} bg-white shadow-sm focus:border-teal-300 focus:ring focus:ring-teal-200 focus:ring-opacity-50 p-2 pr-10`}
+                                        className={`block w-full pl-8 rounded-full border ${formik.touched.amount && formik.errors.amount ? 'border-red-500' : 'border-gray-300'} bg-white shadow-sm focus:border-teal-300 focus:ring focus:ring-teal-200 focus:ring-opacity-50 p-2 pr-10`}
                                     />
                                     <FiDollarSign className="absolute right-3 my-auto inset-y-0 text-gray-400 pointer-events-none" />
-                                    {formik.touched.amount && formik.errors.amount ? (
-                                        <p className="text-red-500 text-sm mt-1">{formik.errors.amount}</p>
-                                    ) : null}
+
                                 </div>
+                                {formik.touched.amount && formik.errors.amount ? (
+                                    <p className="text-red-500 text-sm mt-1">{formik.errors.amount}</p>
+                                ) : null}
                             </div>
                         </div>
 
@@ -141,7 +143,7 @@ const PaymentRequestForm = () => {
                                         onChange={formik.handleChange}
                                         onBlur={formik.handleBlur}
                                         value={formik.values.customerName}
-                                        className="block w-full rounded-full border border-gray-300 bg-white shadow-sm focus:border-teal-300 focus:ring focus:ring-teal-200 focus:ring-opacity-50 p-2 pr-10"
+                                        className="block w-full pl-8 rounded-full border border-gray-300 bg-white shadow-sm focus:border-teal-300 focus:ring focus:ring-teal-200 focus:ring-opacity-50 p-2 pr-10"
                                     />
                                     <FiUser className="absolute right-3 my-auto inset-y-0 text-gray-400 pointer-events-none" />
                                 </div>
