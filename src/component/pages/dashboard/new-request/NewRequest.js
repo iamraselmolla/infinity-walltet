@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { FiDollarSign, FiUser, FiPhone } from 'react-icons/fi';
+import PaymentConfirmationModal from '../../../shared/PaymentConfirmationModal';
 
 const PaymentRequestForm = () => {
+    const [isModalOpen, setIsModalOpen] = useState(false);
+
     const formik = useFormik({
         initialValues: {
             paymentMethod: '',
@@ -27,7 +30,7 @@ const PaymentRequestForm = () => {
         }),
         onSubmit: (values) => {
             console.log(values);
-            alert("Form submitted successfully!");
+            setIsModalOpen(true);  // Open the modal on form submit
         },
     });
 
@@ -41,7 +44,7 @@ const PaymentRequestForm = () => {
                         {/* Payment Method and Payment Type */}
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                             <div>
-                                <label htmlFor="paymentMethod" className="block text-sm font-medium text-gray-700">Choose payment method</label>
+                                <label htmlFor="paymentMethod" className="block text-sm font-medium text-gray-700 mb-2">Choose payment method</label>
                                 <div className="relative">
                                     <select
                                         id="paymentMethod"
@@ -61,7 +64,7 @@ const PaymentRequestForm = () => {
                                 </div>
                             </div>
                             <div>
-                                <label htmlFor="paymentType" className="block text-sm font-medium text-gray-700">Choose Type</label>
+                                <label htmlFor="paymentType" className="block text-sm font-medium text-gray-700 mb-2">Choose Type</label>
                                 <div className="relative">
                                     <select
                                         id="paymentType"
@@ -85,7 +88,7 @@ const PaymentRequestForm = () => {
                         {/* Recipient Number and Amount */}
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                             <div>
-                                <label htmlFor="recipientNumber" className="block text-sm font-medium text-gray-700">Recipient Number</label>
+                                <label htmlFor="recipientNumber" className="block text-sm font-medium text-gray-700 mb-2">Recipient Number</label>
                                 <div className="relative">
                                     <input
                                         type="text"
@@ -104,7 +107,7 @@ const PaymentRequestForm = () => {
                                 </div>
                             </div>
                             <div>
-                                <label htmlFor="amount" className="block text-sm font-medium text-gray-700">Amount</label>
+                                <label htmlFor="amount" className="block text-sm font-medium text-gray-700 mb-2">Amount</label>
                                 <div className="relative">
                                     <input
                                         type="number"
@@ -127,7 +130,7 @@ const PaymentRequestForm = () => {
                         {/* Customer Name and Message */}
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                             <div>
-                                <label htmlFor="customerName" className="block text-sm font-medium text-gray-700">Name & Message (Optional)</label>
+                                <label htmlFor="customerName" className="block text-sm font-medium text-gray-700 mb-2">Name & Message (Optional)</label>
                                 <div className="relative">
                                     <input
                                         type="text"
@@ -143,7 +146,7 @@ const PaymentRequestForm = () => {
                                 </div>
                             </div>
                             <div>
-                                <label htmlFor="message" className="block text-sm font-medium text-gray-700">Message</label>
+                                <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">Message</label>
                                 <textarea
                                     id="message"
                                     name="message"
@@ -174,34 +177,19 @@ const PaymentRequestForm = () => {
                     <div className="bg-white rounded-lg shadow-lg p-6">
                         <h2 className="text-lg font-semibold text-theme-color mb-4">Quick Links</h2>
                         <ul className="space-y-2">
-                            <li>
-                                <a href="#" className="flex items-center text-[#003366] hover:text-teal-800">
-                                    <img src="/images/icon.png" alt="icon" className="mr-2 w-4 h-4" />
-                                    Pending Orders
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" className="flex items-center text-[#003366] hover:text-teal-800">
-                                    <img src="/images/icon.png" alt="icon" className="mr-2 w-4 h-4" />
-                                    Order History
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" className="flex items-center text-[#003366] hover:text-teal-800">
-                                    <img src="/images/icon.png" alt="icon" className="mr-2 w-4 h-4" />
-                                    Saved Payments
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" className="flex items-center text-[#003366] hover:text-teal-800">
-                                    <img src="/images/icon.png" alt="icon" className="mr-2 w-4 h-4" />
-                                    Manage Cards
-                                </a>
-                            </li>
+                            <li><a href="#" className="text-gray-700 hover:text-teal-500">Transaction History</a></li>
+                            <li><a href="#" className="text-gray-700 hover:text-teal-500">Recent Payments</a></li>
+                            <li><a href="#" className="text-gray-700 hover:text-teal-500">Account Settings</a></li>
                         </ul>
                     </div>
                 </div>
             </div>
+
+            {/* Modal */}
+            {isModalOpen && (
+                <PaymentConfirmationModal />
+            )}
+
         </div>
     );
 };
