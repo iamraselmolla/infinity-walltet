@@ -1,5 +1,5 @@
 import React from 'react';
-import { AiOutlineDashboard, AiOutlinePlusCircle, AiOutlineClockCircle, AiOutlineLogout } from 'react-icons/ai';
+import { AiOutlineLogout } from 'react-icons/ai';
 import { Outlet, Link, useLocation } from 'react-router-dom';
 import DashboardHeader from '../pages/dashboard/dashboard-header/DashboardHeader';
 
@@ -14,25 +14,26 @@ const DashboardLayout = () => {
             <div className="w-64 bg-gradient-to-b from-[#00456D] via-[#004E70] to-[#004E70] text-white p-6 flex flex-col justify-between rounded-tr-[20px] rounded-br-[20px]">
                 <div>
                     <div className="flex items-center mb-8">
-
-                        <span className="text-xl font-bold"><img src="/images/logo-white.png" alt="Infinity" /></span>
+                        <span className="text-xl font-bold">
+                            <img src="/images/logo-white.png" alt="Infinity" />
+                        </span>
                     </div>
                     <nav>
                         <ul className="space-y-4">
-                            <li className={`flex items-center pl-6  py-4 rounded ${isActive('/dashboard') ? 'bg-[#003366]' : ''}`}>
-                                <AiOutlineDashboard className="mr-2" />
+                            <li className={`flex items-center pl-6 py-4 rounded ${isActive('/dashboard') ? 'bg-[#003366] pl-12 rounded-tl-3xl rounded-bl-3xl' : ''}`}>
+                                <img src="/images/Dashboard - Solid.png" alt="Dashboard" className="mr-2" />
                                 <Link to="/dashboard">Dashboard</Link>
                             </li>
-                            <li className={`flex items-center pl-6  py-4 rounded ${isActive('/dashboard/new-request') ? 'bg-[#003366]' : ''}`}>
-                                <AiOutlinePlusCircle className="mr-2" />
+                            <li className={`flex items-center pl-6 py-4 rounded ${isActive('/dashboard/new-request') ? 'bg-[#003366] pl-12 rounded-tl-3xl rounded-bl-3xl' : ''}`}>
+                                <img src="/images/Add - Solid.png" alt="New Request" className="mr-2" />
                                 <Link to="/dashboard/new-request">New Request</Link>
                             </li>
-                            <li className={`flex items-center pl-6  py-4 rounded ${isActive('/dashboard/pending-orders') ? 'bg-[#003366]' : ''}`}>
-                                <AiOutlineClockCircle className="mr-2" />
+                            <li className={`flex items-center pl-6 py-4 rounded ${isActive('/dashboard/pending-orders') ? 'bg-[#003366] pl-12 rounded-tl-3xl rounded-bl-3xl' : ''}`}>
+                                <img src="/images/Pending - Solid.png" alt="Pending Orders" className="mr-2" />
                                 <Link to="/dashboard/pending-orders">Pending Orders</Link>
                             </li>
-                            <li className={`flex items-center pl-6  py-4 rounded ${isActive('/dashboard/order-history') ? 'bg-[#003366]' : ''}`}>
-                                <AiOutlineClockCircle className="mr-2" />
+                            <li className={`flex items-center pl-6 py-4 rounded ${isActive('/dashboard/order-history') ? 'bg-[#003366] pl-12 rounded-tl-3xl rounded-bl-3xl' : ''}`}>
+                                <img src="/images/Order History - Solid.png" alt="Order History" className="mr-2" />
                                 <Link to="/dashboard/order-history">Order History</Link>
                             </li>
                         </ul>
