@@ -177,8 +177,8 @@ const PaymentRequestForm = () => {
                 </div>
 
                 {/* Quick Links */}
-                <div className="w-full">
-                    <div className="bg-white rounded-lg shadow-lg p-6">
+                <div className="w-full ">
+                    <div className=" bg-[#F8F9FA] rounded-lg shadow-lg p-6">
                         <h2 className="text-lg font-semibold text-theme-color mb-4">Quick Links</h2>
                         <ul className="space-y-6">
                             <li className="flex items-center">
