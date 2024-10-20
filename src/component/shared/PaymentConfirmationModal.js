@@ -52,8 +52,8 @@ const PaymentModal = ({ isOpen, onClose, values }) => {
 
                             {/* Right Side - Verification */}
                             <div className="flex flex-col items-center justify-center">
-                                <FaRegUserCircle className="text-6xl text-teal-500 mb-4" />
-                                <p className="text-teal-500 font-semibold mb-2">Verify that it's you</p>
+                                <img src="/images/verify.png" alt="User" className=" mb-4" />
+                                <p className=" font-semibold mb-8">Verify that it's you</p>
                                 <div className="relative w-full">
                                     <input
                                         type="password"
