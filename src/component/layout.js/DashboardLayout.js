@@ -11,7 +11,7 @@ const DashboardLayout = () => {
     return (
         <div className="flex h-screen bg-gray-100">
             {/* Sidebar */}
-            <div className="w-64 bg-gradient-to-b from-[#00456D] via-[#004E70] to-[#004E70] text-white p-6 flex flex-col justify-between rounded-tr-[20px] rounded-br-[20px]">
+            <div className="w-64 bg-gradient-to-b from-[#00456D] via-[#004E70] to-[#004E70] text-white p-6 pr-0 flex flex-col justify-between rounded-tr-[20px] rounded-br-[20px]">
                 <div>
                     <div className="flex items-center mb-8">
                         <span className="text-xl font-bold">
@@ -19,20 +19,20 @@ const DashboardLayout = () => {
                         </span>
                     </div>
                     <nav>
-                        <ul className="space-y-4">
-                            <li className={`flex items-center pl-6 py-4 rounded ${isActive('/dashboard') ? 'bg-[#003366] pl-12 rounded-tl-3xl rounded-bl-3xl' : ''}`}>
+                        <ul className="space-y-3">
+                            <li className={`flex items-center relative  py-3 rounded ${isActive('/dashboard') ? 'bg-[#003366] pl-12 rounded-tl-3xl rounded-bl-3xl  active-dashboard-item' : 'pl-6'}`}>
                                 <img src="/images/Dashboard - Solid.png" alt="Dashboard" className="mr-2" />
                                 <Link to="/dashboard">Dashboard</Link>
                             </li>
-                            <li className={`flex items-center pl-6 py-4 rounded ${isActive('/dashboard/new-request') ? 'bg-[#003366] pl-12 rounded-tl-3xl rounded-bl-3xl' : ''}`}>
+                            <li className={`flex items-center relative py-3 rounded ${isActive('/dashboard/new-request') ? 'bg-[#003366] pl-12 rounded-tl-3xl rounded-bl-3xl  active-dashboard-item' : 'pl-6'}`}>
                                 <img src="/images/Add - Solid.png" alt="New Request" className="mr-2" />
                                 <Link to="/dashboard/new-request">New Request</Link>
                             </li>
-                            <li className={`flex items-center pl-6 py-4 rounded ${isActive('/dashboard/pending-orders') ? 'bg-[#003366] pl-12 rounded-tl-3xl rounded-bl-3xl' : ''}`}>
+                            <li className={`flex items-center relative  py-3 rounded ${isActive('/dashboard/pending-orders') ? 'bg-[#003366] pl-12 rounded-tl-3xl rounded-bl-3xl  active-dashboard-item' : 'pl-6'}`}>
                                 <img src="/images/Pending - Solid.png" alt="Pending Orders" className="mr-2" />
                                 <Link to="/dashboard/pending-orders">Pending Orders</Link>
                             </li>
-                            <li className={`flex items-center pl-6 py-4 rounded ${isActive('/dashboard/order-history') ? 'bg-[#003366] pl-12 rounded-tl-3xl rounded-bl-3xl' : ''}`}>
+                            <li className={`flex items-center relative  py-3 rounded ${isActive('/dashboard/order-history') ? 'bg-[#003366] pl-12 rounded-tl-3xl rounded-bl-3xl  active-dashboard-item' : 'pl-6'}`}>
                                 <img src="/images/Order History - Solid.png" alt="Order History" className="mr-2" />
                                 <Link to="/dashboard/order-history">Order History</Link>
                             </li>

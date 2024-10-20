@@ -1,5 +1,6 @@
 import React from 'react';
 import { AiOutlineSearch } from 'react-icons/ai';
+import { Link } from 'react-router-dom';
 
 const DashboardHeader = () => {
     return (
@@ -21,7 +22,7 @@ const DashboardHeader = () => {
                     <img src="/images/user.png" alt="User" className="w-10 h-10 rounded-full mr-2" />
                     <div>
                         <p className="font-semibold">Mohammad Amir Khan</p>
-                        <p className="text-sm text-blue-500">@amirkhan023</p>
+                        <Link to="/dashboard"><p className="text-sm text-blue-500">@amirkhan023</p></Link>
                     </div>
                 </div>
             </div>

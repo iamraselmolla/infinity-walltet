@@ -16,3 +16,17 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+/* .active-dashboard-item {
+  position: relative;
+  overflow: visible !important;
+}
+
+.active-dashboard-item::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 20px;
+  background-color: #eaf2fa;
+} */
