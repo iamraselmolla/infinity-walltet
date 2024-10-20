@@ -3,6 +3,7 @@ import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { FiDollarSign, FiUser, FiPhone } from 'react-icons/fi';
 import PaymentModal from '../../../shared/PaymentConfirmationModal';
+import { Link } from 'react-router-dom';
 
 const PaymentRequestForm = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -179,10 +180,25 @@ const PaymentRequestForm = () => {
                 <div className="w-full">
                     <div className="bg-white rounded-lg shadow-lg p-6">
                         <h2 className="text-lg font-semibold text-theme-color mb-4">Quick Links</h2>
-                        <ul className="space-y-2">
-                            <li><a href="#" className="text-gray-700 hover:text-teal-500">Transaction History</a></li>
-                            <li><a href="#" className="text-gray-700 hover:text-teal-500">Recent Payments</a></li>
-                            <li><a href="#" className="text-gray-700 hover:text-teal-500">Account Settings</a></li>
+                        <ul className="space-y-6">
+                            <li className="flex items-center">
+                                <img src="/images/icon.png" alt="Transaction History" className="mr-2 w-6 h-6" /> {/* Transaction history icon */}
+                                <Link to="/transaction-history" className="text-gray-700 hover:text-teal-500">
+                                    Transaction History
+                                </Link>
+                            </li>
+                            <li className="flex items-center">
+                                <img src="/images/icon.png" alt="Recent Payments" className="mr-2 w-6 h-6" /> {/* Recent payments icon */}
+                                <Link to="/recent-payments" className="text-gray-700 hover:text-teal-500">
+                                    Recent Payments
+                                </Link>
+                            </li>
+                            <li className="flex items-center">
+                                <img src="/images/icon.png" alt="Account Settings" className="mr-2 w-6 h-6" /> {/* Account settings icon */}
+                                <Link to="/account-settings" className="text-gray-700 hover:text-teal-500">
+                                    Account Settings
+                                </Link>
+                            </li>
                         </ul>
                     </div>
                 </div>
