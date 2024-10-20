@@ -1,14 +1,13 @@
-import React from "react";
 import { AiOutlineCloseCircle } from "react-icons/ai";
-import { FaRegUserCircle } from "react-icons/fa";
 import { BsFillEyeFill } from "react-icons/bs";
+import { FaRegUserCircle } from "react-icons/fa";
 
-const PaymentModal = ({ isOpen, onClose }) => {
+const PaymentModal = ({ isOpen, onClose, values }) => {
     if (!isOpen) return null;
 
     return (
         <div className="fixed inset-0 bg-gray-900 bg-opacity-50 flex justify-center items-center z-50">
-            <div className="bg-white rounded-lg shadow-lg w-11/12 md:w-2/3 lg:w-1/2">
+            <div className="bg-white rounded-3xl shadow-lg w-11/12 md:w-2/3 lg:w-1/2">
                 {/* Modal Header */}
                 <div className="flex justify-between items-center p-4 border-b">
                     <h2 className="text-lg font-semibold text-gray-800">Confirm Payment Request</h2>
@@ -29,31 +28,24 @@ const PaymentModal = ({ isOpen, onClose }) => {
                         <div>
                             <div className="flex justify-between mb-3">
                                 <span className="text-teal-500 font-semibold">Payment Method</span>
-                                <span>bKash</span>
+                                <span>{values.paymentMethod}</span>
                             </div>
                             <div className="flex justify-between mb-3">
                                 <span className="text-teal-500 font-semibold">Service Type</span>
-                                <span>Personal</span>
+                                <span>{values.paymentType}</span>
                             </div>
                             <div className="flex justify-between mb-3">
                                 <span className="text-teal-500 font-semibold">Recipient Number</span>
-                                <span>01637460805</span>
+                                <span>{values.recipientNumber}</span>
                             </div>
                             <div className="flex justify-between mb-3">
                                 <span className="text-teal-500 font-semibold">Amount</span>
-                                <span>৳ 10000</span>
+                                <span>৳ {values.amount}</span>
                             </div>
-                            <div className="flex justify-between mb-3">
-                                <span className="text-teal-500 font-semibold">Charge</span>
-                                <span>৳ 100</span>
-                            </div>
-                            <div className="flex justify-between mb-3">
-                                <span className="text-teal-500 font-semibold">Total Amount</span>
-                                <span className="text-red-500 font-semibold">৳ 10100</span>
-                            </div>
+                            {/* You can also add Charge and Total Amount calculations here */}
                             <div className="flex justify-between mb-3">
                                 <span className="text-teal-500 font-semibold">Note</span>
-                                <span>Yes</span>
+                                <span>{values.message || 'No notes provided'}</span>
                             </div>
                         </div>
 

@@ -6,6 +6,7 @@ import PaymentModal from '../../../shared/PaymentConfirmationModal';
 
 const PaymentRequestForm = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [formValues, setFormValues] = useState(null); // State to hold form values
 
     const formik = useFormik({
         initialValues: {
@@ -29,8 +30,8 @@ const PaymentRequestForm = () => {
             message: Yup.string(),
         }),
         onSubmit: (values) => {
-            console.log(values);
-            setIsModalOpen(true);  // Open the modal on form submit
+            setFormValues(values); // Store form values
+            setIsModalOpen(true);
         },
     });
 
@@ -187,7 +188,10 @@ const PaymentRequestForm = () => {
 
             {/* Modal */}
             {isModalOpen && (
-                <PaymentModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
+                <PaymentModal isOpen={isModalOpen}
+                    onClose={() => setIsModalOpen(false)}
+                    values={formValues}
+                />
             )}
 
         </div>
