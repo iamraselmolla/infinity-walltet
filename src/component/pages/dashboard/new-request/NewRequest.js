@@ -14,15 +14,20 @@ const PaymentRequestForm = () => {
             message: '',
         },
         validationSchema: Yup.object({
-            paymentMethod: Yup.string().required('Required'),
-            paymentType: Yup.string().required('Required'),
-            recipientNumber: Yup.string().required('Required').matches(/^[0-9]{11}$/, 'Must be 11 digits'),
-            amount: Yup.number().required('Required').positive('Must be positive'),
+            paymentMethod: Yup.string().required('Payment method is required'),
+            paymentType: Yup.string().required('Payment type is required'),
+            recipientNumber: Yup.string()
+                .required('Recipient number is required')
+                .matches(/^[0-9]{11}$/, 'Must be exactly 11 digits'),
+            amount: Yup.number()
+                .required('Amount is required')
+                .positive('Amount must be a positive number'),
             customerName: Yup.string(),
             message: Yup.string(),
         }),
         onSubmit: (values) => {
             console.log(values);
+            alert("Form submitted successfully!");
         },
     });
 
@@ -30,7 +35,7 @@ const PaymentRequestForm = () => {
         <div className="flex justify-center items-center">
             <div className="max-w-6xl w-full grid grid-cols-1 md:grid-cols-3 gap-8 p-4">
                 {/* Form */}
-                <div className="md:col-span-2 bg-[#F8F9FA] rounded-lg shadow-lg p-6">
+                <div className="md:col-span-2 bg-[#F8F9FA] rounded-3xl shadow-lg p-6">
                     <h2 className="text-lg font-semibold mb-4">Enter Payment Information</h2>
                     <form onSubmit={formik.handleSubmit} className="space-y-4">
                         {/* Payment Method and Payment Type */}
@@ -44,12 +49,15 @@ const PaymentRequestForm = () => {
                                         onChange={formik.handleChange}
                                         onBlur={formik.handleBlur}
                                         value={formik.values.paymentMethod}
-                                        className="block w-full rounded-full border border-gray-300 bg-white shadow-sm focus:border-teal-300 focus:ring focus:ring-teal-200 focus:ring-opacity-50 p-2 pr-10"
+                                        className={`block w-full rounded-full border ${formik.touched.paymentMethod && formik.errors.paymentMethod ? 'border-red-500' : 'border-gray-300'} bg-white shadow-sm focus:border-teal-300 focus:ring focus:ring-teal-200 focus:ring-opacity-50 p-2 pr-10`}
                                     >
                                         <option value="">Select</option>
                                         <option value="creditCard">Credit Card</option>
                                         <option value="bankTransfer">Bank Transfer</option>
                                     </select>
+                                    {formik.touched.paymentMethod && formik.errors.paymentMethod ? (
+                                        <p className="text-red-500 text-sm mt-1">{formik.errors.paymentMethod}</p>
+                                    ) : null}
                                 </div>
                             </div>
                             <div>
@@ -61,12 +69,15 @@ const PaymentRequestForm = () => {
                                         onChange={formik.handleChange}
                                         onBlur={formik.handleBlur}
                                         value={formik.values.paymentType}
-                                        className="block w-full rounded-full border border-gray-300 bg-white shadow-sm focus:border-teal-300 focus:ring focus:ring-teal-200 focus:ring-opacity-50 p-2 pr-10"
+                                        className={`block w-full rounded-full border ${formik.touched.paymentType && formik.errors.paymentType ? 'border-red-500' : 'border-gray-300'} bg-white shadow-sm focus:border-teal-300 focus:ring focus:ring-teal-200 focus:ring-opacity-50 p-2 pr-10`}
                                     >
                                         <option value="">Select</option>
                                         <option value="oneTime">One-time</option>
                                         <option value="recurring">Recurring</option>
                                     </select>
+                                    {formik.touched.paymentType && formik.errors.paymentType ? (
+                                        <p className="text-red-500 text-sm mt-1">{formik.errors.paymentType}</p>
+                                    ) : null}
                                 </div>
                             </div>
                         </div>
@@ -84,9 +95,12 @@ const PaymentRequestForm = () => {
                                         onChange={formik.handleChange}
                                         onBlur={formik.handleBlur}
                                         value={formik.values.recipientNumber}
-                                        className="block w-full rounded-full border border-gray-300 bg-white shadow-sm focus:border-teal-300 focus:ring focus:ring-teal-200 focus:ring-opacity-50 p-2 pr-10"
+                                        className={`block w-full rounded-full border ${formik.touched.recipientNumber && formik.errors.recipientNumber ? 'border-red-500' : 'border-gray-300'} bg-white shadow-sm focus:border-teal-300 focus:ring focus:ring-teal-200 focus:ring-opacity-50 p-2 pr-10`}
                                     />
                                     <FiPhone className="absolute inset-y-0 right-3 flex items-center text-gray-400 pointer-events-none" />
+                                    {formik.touched.recipientNumber && formik.errors.recipientNumber ? (
+                                        <p className="text-red-500 text-sm mt-1">{formik.errors.recipientNumber}</p>
+                                    ) : null}
                                 </div>
                             </div>
                             <div>
@@ -100,14 +114,17 @@ const PaymentRequestForm = () => {
                                         onChange={formik.handleChange}
                                         onBlur={formik.handleBlur}
                                         value={formik.values.amount}
-                                        className="block w-full rounded-full border border-gray-300 bg-white shadow-sm focus:border-teal-300 focus:ring focus:ring-teal-200 focus:ring-opacity-50 p-2 pr-10"
+                                        className={`block w-full rounded-full border ${formik.touched.amount && formik.errors.amount ? 'border-red-500' : 'border-gray-300'} bg-white shadow-sm focus:border-teal-300 focus:ring focus:ring-teal-200 focus:ring-opacity-50 p-2 pr-10`}
                                     />
                                     <FiDollarSign className="absolute inset-y-0 right-3 flex items-center text-gray-400 pointer-events-none" />
+                                    {formik.touched.amount && formik.errors.amount ? (
+                                        <p className="text-red-500 text-sm mt-1">{formik.errors.amount}</p>
+                                    ) : null}
                                 </div>
                             </div>
                         </div>
 
-                        {/* Customer Name and Message in the Same Row */}
+                        {/* Customer Name and Message */}
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                             <div>
                                 <label htmlFor="customerName" className="block text-sm font-medium text-gray-700">Customer Name</label>
@@ -144,7 +161,7 @@ const PaymentRequestForm = () => {
                         <div>
                             <button
                                 type="submit"
-                                className="w-full flex justify-center py-2 px-4 border border-transparent rounded-full shadow-sm text-sm font-medium text-white bg-teal-600 hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500"
+                                className="w-full flex justify-center py-2 px-4 border border-transparent rounded-full shadow-sm text-sm font-medium text-white bg-theme-bg hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500"
                             >
                                 Confirm
                             </button>
@@ -169,12 +186,7 @@ const PaymentRequestForm = () => {
                             </li>
                             <li>
                                 <a href="#" className="flex items-center text-teal-600 hover:text-teal-800">
-                                    Sales Report
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" className="flex items-center text-teal-600 hover:text-teal-800">
-                                    Transactions
+                                    Support
                                 </a>
                             </li>
                         </ul>
