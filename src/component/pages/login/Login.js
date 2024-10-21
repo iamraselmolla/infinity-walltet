@@ -3,10 +3,17 @@ import { CiUser, CiLock } from 'react-icons/ci';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import { FcGoogle } from 'react-icons/fc';
 import { FaCircleCheck } from "react-icons/fa6";
+import useStore from '../../zustand/store';
 
 
 const LoginPage = () => {
     const [showPassword, setShowPassword] = useState(false);
+    const { bears, increasePopulation } = useStore((state) => state)
+    function BearCounter() {
+
+        console.log(bears);
+    }
+    BearCounter()
 
     return (
         <div className="flex flex-col md:flex-row h-screen bg-white">
@@ -76,7 +83,7 @@ const LoginPage = () => {
                             <span className="text-gray-600">Or</span>
                         </div>
 
-                        <button className="w-full mt-4 p-3 border border-gray-300 rounded-full flex items-center justify-center">
+                        <button onClick={increasePopulation} className="w-full mt-4 p-3 border border-gray-300 rounded-full flex items-center justify-center">
                             <FcGoogle className="mr-2" />
                             Sign in with Google
                         </button>
